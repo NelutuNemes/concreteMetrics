@@ -86,7 +86,7 @@ function updateUI() {
         
         const resultCement = document.createElement("p");
         resultCement.setAttribute("class", "item-value");
-        resultCement.innerHTML = `<span class="row-label">- Cement: </span> <span class="row-value">${item.cement} kg.</span> ( <span class="row-value">${Math.round((item.cement)/40)} bags of 40 kg )`
+        resultCement.innerHTML = `<span class="row-label">- Cement: </span> <span class="row-value">${item.cement} kg.</span> ( <span class="row-value">${(item.cement)/40} bags of 40 kg )`
     
         const resultSand = document.createElement("p")
         resultSand.setAttribute("class", "item-value");
@@ -98,7 +98,7 @@ function updateUI() {
     
         const resultWater = document.createElement("p")
         resultWater.setAttribute("class", "item-value");
-        resultWater.innerHTML = `<span class="row-label">- Water: </span> <span class="row-value">${item.water} liter.</span> ( <span class="row-value">${((item.water)/10).toFixed(2)} buckets of 10 liter)`
+        resultWater.innerHTML = `<span class="row-label">- Water: </span> <span class="row-value">${item.water} liter.</span> ( <span class="row-value">${((item.water)/10).toFixed(2)} buckets at 10 liter)`
 
         resultDiv.appendChild(resultCement);
         resultDiv.appendChild(resultSand);
