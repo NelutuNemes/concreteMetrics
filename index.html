@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Materials Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="main">
+        <div class="container">
+            <h1>concreteMetrics</h1>
+
+            <label for="volume">Enter required volume (m³)</label>
+            <input type="text" id="volume" min=""0.1 step="o.1" placeholder="e.g.,5">
+
+            <label for="concreteClass">Please choose concrete class</label>
+            <select name="" id="concreteClass">
+                <option value="C8/10">C8/10</option>
+                <option value="C12/15">C12/15</option>
+                <option value="C16/20">C16/20</option>
+                <option value="C20/25">C20/25</option>
+                <option value="C25/30">C25/30</option>
+                <option value="C30/37">C30/37</option>
+            </select>
+
+            <button id="calculate-btn">Calculate</button>
+
+            <div id="result"></div>
+        </div>
+    </div>
+    <div class="footer"></div>
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
