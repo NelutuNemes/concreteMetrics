@@ -14,6 +14,73 @@ let volumeElement = document.getElementById("volume");
 let calculateBtn = document.getElementById("calculate-btn");
 let result = document.getElementById("result");
 
+// Initialize i18next for translations
+i18next.init({
+    lng: localStorage.getItem('language') || 'ro',  // Get saved language or default to Romanian
+    debug: true,
+    resources: {
+        en: {
+            translation: {
+                "app-title": "concreteMetrics",
+                "volume": "Volume",
+                "volume-label": "Enter required volume (m³)",
+                "concrete-class": "Concrete Class",
+                "concreteClass-label": "Please choose concrete class",
+                "calculate-btn": "Calculate",
+                "result-title": "Required materials for",
+                "cement": "Cement",
+                "sand": "Sand",
+                "gravel": "Gravel",
+                "water": "Water"
+            }
+        },
+        ro: {
+            translation: {
+                "app-title": "concreteMetrics",
+                "volume": "Volum",
+                "volume-label": "Introduceți volumul necesar (m³)",
+                "concrete-class": "Clasa Beton",
+                "concreteClass-label": "Vă rugăm să alegeți clasa de beton",
+                "calculate-btn": "Calculează",
+                "result-title": "Materiale necesare pentru",
+                "cement": "Ciment",
+                "sand": "Nisip",
+                "gravel": "Pietriș",
+                "water": "Apă"
+            }
+        }
+    }
+}, function(err, t) {
+    updateUIWithTranslations();
+});
+
+// Function to update UI text based on selected language
+function updateUIWithTranslations() {
+    let appTitle = document.getElementById("app-title");
+    let volumeInput = document.getElementById("volume");
+    let volumeLabel = document.getElementById("volume-label");
+    let concreteClassInput = document.getElementById("concreteClass");
+    let concreteClassLabel = document.getElementById("concreteClass-label");
+    let calculateBtn = document.getElementById("calculate-btn");
+
+    if (appTitle) appTitle.textContent = i18next.t("app-title");
+    if (volumeInput) volumeInput.placeholder = i18next.t("volume");
+    if (volumeLabel) volumeLabel.textContent = i18next.t("volume-label");
+    if (concreteClassInput) concreteClassInput.placeholder = i18next.t("concrete-class");
+    if (concreteClassLabel) concreteClassLabel.textContent = i18next.t("concreteClass-label");
+    if (calculateBtn) calculateBtn.textContent = i18next.t("calculate-btn");
+}
+
+// Change language and store preference in localStorage
+document.getElementById("lang-ro").addEventListener("click", () => {
+    i18next.changeLanguage("ro", updateUIWithTranslations);
+    localStorage.setItem("language", "ro");
+});
+
+document.getElementById("lang-en").addEventListener("click", () => {
+    i18next.changeLanguage("en", updateUIWithTranslations);
+    localStorage.setItem("language", "en");
+});
 
 calculateBtn.addEventListener("click", calculateMaterials);
 
@@ -56,6 +123,7 @@ function calculateMaterials() {
     //reset store element
     finalResult = [];
 
+    //Calculate required material quantities
     const requiredMaterials = {
         cement: recipe.cement * currentCalculation.volume,
         sand: recipe.sand * currentCalculation.volume,
@@ -77,38 +145,37 @@ function unitConversion() {
 }
 
 function updateUI() {
+    let result = document.getElementById("result");
     result.innerHTML = "";
 
     finalResult.forEach((item) => {
         const resultDiv = document.createElement("div");
         resultDiv.setAttribute("id", "result-container");
-        resultDiv.innerHTML = `<h4>The quantities of materials needed for:  ${currentCalculation.volume} m³ of concrete, according to the chosen recipe " ${currentCalculation.concreteClass} ",  are :</h4>`;    
-        
-        const resultCement = document.createElement("p");
-        resultCement.setAttribute("class", "item-value");
-        resultCement.innerHTML = `<span class="row-label">- Cement: </span> <span class="row-value">${item.cement} kg.</span> ( <span class="row-value">${(item.cement)/40} bags of 40 kg )`
-    
-        const resultSand = document.createElement("p")
-        resultSand.setAttribute("class", "item-value");
-        resultSand.innerHTML = `<span class="row-label">- Sand: </span> <span class="row-value">${item.sand} kg.</span> ( <span class="row-value">${((item.sand)/1550).toFixed(2)} m³) `
-    
-        const resultGravel = document.createElement("p")
-        resultGravel.setAttribute("class", "item-value");
-        resultGravel.innerHTML = `<span class="row-label">- Gravel: </span> <span class="row-value">${item.gravel} kg.</span> ( <span class="row-value">${((item.gravel)/1550).toFixed(2)} m³)`
-    
-        const resultWater = document.createElement("p")
-        resultWater.setAttribute("class", "item-value");
-        resultWater.innerHTML = `<span class="row-label">- Water: </span> <span class="row-value">${item.water} liter.</span> ( <span class="row-value">${((item.water)/10).toFixed(2)} buckets at 10 liter)`
 
+        // Display title with dynamic volume and class
+        resultDiv.innerHTML = `<h4>${i18next.t("result-title")} ${currentCalculation.volume} m³ (${currentCalculation.concreteClass}):</h4>`;
+
+        // Display calculated material amounts
+        const resultCement = document.createElement("p");
+        resultCement.innerHTML = `<span>${i18next.t("cement")}: </span> ${item.cement} kg`;
+
+        const resultSand = document.createElement("p");
+        resultSand.innerHTML = `<span>${i18next.t("sand")}: </span> ${item.sand} kg`;
+
+        const resultGravel = document.createElement("p");
+        resultGravel.innerHTML = `<span>${i18next.t("gravel")}: </span> ${item.gravel} kg`;
+
+        const resultWater = document.createElement("p");
+        resultWater.innerHTML = `<span>${i18next.t("water")}: </span> ${item.water} liters`;
+
+        // Append all result elements to the container
         resultDiv.appendChild(resultCement);
         resultDiv.appendChild(resultSand);
         resultDiv.appendChild(resultGravel);
         resultDiv.appendChild(resultWater);
-
         result.appendChild(resultDiv);
+    });
+    log(`Current result list is: ${JSON.stringify(finalResult)}`);
 
-    })
-    
-log(`Current result list is: ${JSON.stringify(finalResult)}`);
+}    
 
-}
