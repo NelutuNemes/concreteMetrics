@@ -116,7 +116,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     padding: 0;
     margin: auto;
     /* word-wrap: break-word;
@@ -159,7 +159,7 @@ footer p{
         background: white;
         padding: 20px;
         /* margin: 10% auto; */
-        width: 99%;
+        /* width: 99%; */
         height: 100vh;
         text-align: center;
         /* border-radius: 10px; */
