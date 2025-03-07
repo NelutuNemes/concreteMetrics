@@ -38,6 +38,8 @@ i18next.init({
                 "sand": "Sand",
                 "gravel": "Gravel",
                 "water": "Water",
+                "liters": "liters",
+                "bags":"bags of 40 ",
                 "generate-summary-btn": "Generate summary",
                 "session-title": "Session summary :",
                 "summary-result-title": "Result no  "
@@ -58,6 +60,8 @@ i18next.init({
                 "sand": "Nisip",
                 "gravel": "Pietriș",
                 "water": "Apă",
+                "liters": "litri",
+                "bags":"saci de 40 ",
                 "generate-summary-btn": "Genereaza un sumar",
                 "session-title": "Rezumatul sesiunii :",
                 "summary-result-title": "Rezultatul nr "
@@ -104,12 +108,12 @@ calculateBtn.addEventListener("click", calculateMaterials);
 
 //object with concrete mix recipes for different class
 const concreteRecipes = {
-    "C8/10": { cement: 170, sand: 650, gravel: 1050, water: 150 },
-    "C12/15": { cement: 210, sand: 600, gravel: 1100, water: 160 },
-    "C16/20": { cement: 275, sand: 550, gravel: 1050, water: 160 },
-    "C20/25": { cement: 325, sand: 500, gravel: 1025, water: 150 },
-    "C25/30": { cement: 375, sand: 450, gravel: 1000, water: 140 },
-    "C30/37": { cement: 425, sand: 400, gravel: 975, water: 130 }
+    "C8/10 (B100)": { cement: 170, sand: 650, gravel: 1050, water: 150 },
+    "C12/15 (B150)": { cement: 210, sand: 600, gravel: 1100, water: 160 },
+    "C16/20 (B200)": { cement: 275, sand: 550, gravel: 1050, water: 160 },
+    "C20/25 (B250)": { cement: 325, sand: 500, gravel: 1025, water: 150 },
+    "C25/30 (B300)": { cement: 375, sand: 450, gravel: 1000, water: 140 },
+    "C30/37 (B350)": { cement: 425, sand: 400, gravel: 975, water: 130 }
 };
 
 //element to store result
@@ -158,11 +162,6 @@ function calculateMaterials() {
     updateUI();
 }
 
-function unitConversion() {
-    finalResult.forEach((item) => {
-        
-    })
-}
 
 function updateUI() {
     let result = document.getElementById("result");
@@ -173,20 +172,20 @@ function updateUI() {
         resultDiv.setAttribute("id", "result-container");
 
         // Display title with dynamic volume and class
-        resultDiv.innerHTML = `<h4>${i18next.t("result-title")} ${currentCalculation.volume} m³, ${i18next.t("result-title2")} (${currentCalculation.concreteClass})${i18next.t("result-title3")}</h4>`;
+        resultDiv.innerHTML = `<h4>${i18next.t("result-title")} ${currentCalculation.volume} m³, ${i18next.t("result-title2")} "${currentCalculation.concreteClass}" ${i18next.t("result-title3")}</h4>`;
 
         // Display calculated material amounts
         const resultCement = document.createElement("p");
-        resultCement.innerHTML = `<span>${i18next.t("cement")}: </span> ${item.cement} kg`;
+        resultCement.innerHTML = `<span>${i18next.t("cement")}: </span> ${item.cement} kg, (\u2248 ${Math.round(item.cement/40)} <span>${i18next.t("bags")} kg)`;
 
         const resultSand = document.createElement("p");
         resultSand.innerHTML = `<span>${i18next.t("sand")}: </span> ${item.sand} kg`;
 
         const resultGravel = document.createElement("p");
-        resultGravel.innerHTML = `<span>${i18next.t("gravel")}: </span> ${item.gravel} kg`;
+        resultGravel.innerHTML = `<span>${i18next.t("gravel")}: </span> ${item.gravel} kg, ( ${i18next.t("sand")} + ${i18next.t("gravel")} : \u2248 ${((item.sand+item.gravel)/1500).toFixed(2)} m³)`;
 
         const resultWater = document.createElement("p");
-        resultWater.innerHTML = `<span>${i18next.t("water")}: </span> ${item.water} liters`;
+        resultWater.innerHTML = `<span>${i18next.t("water")}: </span> ${item.water} ${i18next.t("liters")}`;
 
         // Append all result elements to the container
         resultDiv.appendChild(resultCement);
@@ -218,10 +217,10 @@ finalResult.forEach((result, index) => {
     let listItem = document.createElement("li");
     listItem.innerHTML = `
         <strong id="result-title">${i18next.t("summary-result-title")} ${index + 1} :</strong>
-        <p>${i18next.t("cement")}: ${result.cement} kg</p>
+        <p>${i18next.t("cement")}: ${result.cement} kg, (\u2248 ${Math.round(result.cement/40)} <span>${i18next.t("bags")} kg)</p>
         <p>${i18next.t("sand")}: ${result.sand} kg</p>
-        <p>${i18next.t("gravel")}: ${result.gravel} kg</p>
-        <p>${i18next.t("water")}: ${result.water} liters</p>
+        <p>${i18next.t("gravel")}: ${result.gravel} kg , ( ${i18next.t("sand")} + ${i18next.t("gravel")} : \u2248 ${((result.sand+result.gravel)/1500).toFixed(2)} m³)</p>
+        <p>${i18next.t("water")}: ${result.water} ${i18next.t("liters")}</p>
     `;
     summaryList.appendChild(listItem);
 });

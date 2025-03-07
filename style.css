@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     /* align-items: center; */
     height: 100vh;
     background-color:black;
@@ -12,6 +12,7 @@ body {
 }
  .body-img-background{
     background-image: url("resouces/images/concreteBackground.jpeg");
+    background-repeat: no-repeat;
  }
 
  .header{
@@ -123,7 +124,7 @@ footer{
     overflow-wrap: break-word; */
     bottom: 0;
     /* border: 1px solid black; */
-/* position: relative; */
+position: fixed;
     text-align: center;
 }
 footer p{
@@ -185,7 +186,7 @@ footer p{
         list-style-type: none;
         border: 1px dotted black;
         border-radius: 5px;
-        width: 50%;
+        width: 60%;
         margin: auto;
         padding:2rem;
         display: flex;
