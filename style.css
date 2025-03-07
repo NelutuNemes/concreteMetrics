@@ -12,7 +12,6 @@ body {
 }
  .body-img-background{
     background-image: url("resouces/images/concreteBackground.jpeg");
-    background-repeat: no-repeat;
  }
 
  .header{
@@ -85,7 +84,7 @@ button:hover {
 }
 #result {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 #result-container{
     background-color: rgba(36, 36, 36, 0.5);
@@ -164,6 +163,7 @@ footer p{
         height: 100vh;
         text-align: center;
         /* border-radius: 10px; */
+        font-size: 14px;
     }
         .close-btn {
         /* background: lightblue; */
@@ -186,7 +186,7 @@ footer p{
         list-style-type: none;
         border: 1px dotted black;
         border-radius: 5px;
-        width: 60%;
+        width: 50%;
         margin: auto;
         padding:2rem;
         display: flex;
