@@ -235,6 +235,7 @@ footer p{
     }
     #info-modal-description{
         text-align: justify;
+        font-size: 0.8rem;
     }
     #info-modal-table-title{
         text-decoration: underline;
@@ -281,7 +282,7 @@ footer p{
      
         .close-info-modal-btn {
         position: absolute;
-        top: 1rem;
+        top: 2rem;
         right: 1rem;
         font-size: 20px;
         cursor: pointer;
