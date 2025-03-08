@@ -186,9 +186,9 @@ footer p{
         list-style-type: none;
         border: 1px dotted black;
         border-radius: 5px;
-        width: 90%;
+        width: 80%;
         margin: auto;
-        padding:2rem;
+        padding:0.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -248,6 +248,17 @@ footer p{
         height: 100vh;
         text-align: center;
         font-size: 10px;
+    }
+
+        ul{
+        list-style-type: none;
+        border: 1px dotted black;
+        border-radius: 5px;
+        min-width: 80vw;
+        margin: auto;
+        padding:0.5rem;
+        display: flex;
+        flex-direction: column;
     }
 
 }
