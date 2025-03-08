@@ -219,6 +219,7 @@ footer p{
         align-items: center;
     }
         .info-modal-content {
+        margin-top: 2rem;
         background-color: white;
         color: black;
         padding: 20px;
@@ -234,10 +235,6 @@ footer p{
     }
     #info-modal-description{
         text-align: justify;
-    }
-    #spacer{
-        min-width: 3rem;
-        background-color: yellow;
     }
     #info-modal-table-title{
         text-decoration: underline;
@@ -334,7 +331,7 @@ footer p{
 @media (max-width: 450px) {
     #result {
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
        .modal-content {
         background: white;

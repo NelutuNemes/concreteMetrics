@@ -307,7 +307,7 @@ function updateInfoModal() {
         <h4 id="info-modal-title">${data.title}</h4>
         <h5 id="info-modal-description">${data.description}</h5>
         <h6 id="info-modal-table-title">${data.tableTitle}</h6>
-        <table border="1" style="font-size: 0.9rem;">
+        <table border="1" style="font-size: 0.7rem;">
             <thead>
                 <tr>${data.columns.map(col => `<th>${col}</th>`).join("")}</tr>
             </thead>
