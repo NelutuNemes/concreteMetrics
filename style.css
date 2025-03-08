@@ -240,7 +240,7 @@ footer p{
 @media (max-width: 450px) {
     #result {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 1rem;
 }
        .modal-content {
         background: white;
