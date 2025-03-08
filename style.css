@@ -256,7 +256,7 @@ footer p{
         border-radius: 5px;
         min-width: fit-content;
         margin: auto;
-        padding:0.6rem;
+        padding:0.8rem;
         display: flex;
         flex-direction: column;
     }
