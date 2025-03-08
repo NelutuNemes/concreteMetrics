@@ -248,3 +248,103 @@ document.getElementById("print-summary-btn").addEventListener("click", function(
 });
 
 
+// info-modal
+
+// Obiect cu informațiile despre beton în ambele limbi
+const betonData = {
+    ro: {
+        title: "Cantități de materiale pentru prepararea betonului",
+        description: "Cantitățile de materiale necesare pentru prepararea betonului depind de clasa betonului, tipul cimentului utilizat, rețeta de amestec și alți factori precum umiditatea agregatelor și raportul apă/ciment. Mai jos sunt prezentate rețete orientative pentru diverse clase de beton, exprimate în kg/m³",
+        tableTitle: "Tabel cantități de materiale pentru 1 m³ de beton, valorile sunt aproximative și pot varia în funcție de sursa materialelor și metoda de preparare.",
+        obs: [
+            "Observații: ",
+            "Ciment: Se utilizează de obicei ciment de tip CEM I 42.5R sau CEM II A/M 42.5R.",
+            "Raport apă/ciment (A/C): Valoarea trebuie să fie cât mai mică pentru o rezistență mai mare.",
+            "Agregate: Nisip (0-4 mm), pietriș (4-8 mm, 8-16 mm sau 16-32 mm).",
+            "Aditivi (opțional): Plastifianți, superplastifianți pentru reducerea apei și îmbunătățirea lucrabilității."
+        ],
+        columns: ["Clasa beton", "Ciment (kg)", "Nisip (kg)", "Pietriș (kg)", "Apă (litri)", "Raport A/C"],
+        data: [
+            ["C8/10 (B100)", "180-200", "850-900", "1000-1050", "180-200", "1,0-1,2"],
+            ["C12/15 (B150)", "220-250", "750-850", "1050-1100", "170-190", "0,8-1,0"],
+            ["C16/20 (B200)", "270-300", "700-800", "1100-1150", "170-190", "0,6-0,8"],
+            ["C20/25 (B250)", "300-350", "650-750", "1150-1200", "160-180", "0,5-0,7"],
+            ["C25/30 (B300)", "350-400", "600-700", "1200-1250", "150-170", "0,45-0,6"],
+            ["C30/37 (B350)", "400-450", "550-650", "1250-1300", "140-160", "0,4-0,5"]
+        ]
+    },
+    en: {
+        title: "Material quantities for concrete preparation",
+        description: "The material quantities required for concrete preparation depend on the concrete class, the type of cement used, the mixing recipe, and other factors such as aggregate moisture and water/cement ratio. Below are indicative recipes for various concrete classes, expressed in kg/m³.",
+        tableTitle: "Material quantities table for 1 m³ of concrete, values are approximate and may vary depending on the source of materials and method of preparation.",
+        obs: [
+            "Notes:", 
+            "Cement: Usually, CEM I 42.5R or CEM II A/M 42.5R cement is used.", 
+            "Water/Cement Ratio (W/C): The value should be as low as possible for higher strength.", 
+            "Aggregates: Sand (0-4 mm), gravel (4-8 mm, 8-16 mm, or 16-32 mm).", 
+            "Additives (optional): Plasticizers, superplasticizers for reducing water and improving workability."
+        ],
+        columns: ["Concrete Class", "Cement (kg)", "Sand (kg)", "Gravel (kg)", "Water (liters)", "W/C Ratio"],
+        data: [
+            ["C8/10 (B100)", "180-200", "850-900", "1000-1050", "180-200", "1.0-1.2"],
+            ["C12/15 (B150)", "220-250", "750-850", "1050-1100", "170-190", "0.8-1.0"],
+            ["C16/20 (B200)", "270-300", "700-800", "1100-1150", "170-190", "0.6-0.8"],
+            ["C20/25 (B250)", "300-350", "650-750", "1150-1200", "160-180", "0.5-0.7"],
+            ["C25/30 (B300)", "350-400", "600-700", "1200-1250", "150-170", "0.45-0.6"],
+            ["C30/37 (B350)", "400-450", "550-650", "1250-1300", "140-160", "0.4-0.5"]
+        ]
+    }
+};
+
+// Variabilă pentru limba curentă (implicit română)
+let currentLang = "ro";
+
+// Funcție pentru actualizarea conținutului modalului info
+function updateInfoModal() {
+    const data = betonData[currentLang];
+
+    let modalContent = `<h2>${data.title}</h2>
+        <p>${data.description}</p>
+        <h5>${data.tableTitle}</h5>
+        <table border="1" style="font-size: 0.9rem;">
+            <thead>
+                <tr>${data.columns.map(col => `<th>${col}</th>`).join("")}</tr>
+            </thead>
+            <tbody>
+                ${data.data.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}
+            </tbody>
+        </table>
+        <h6>${(data.obs).join('')}</h6>`;
+
+    document.getElementById("info-modal-content").innerHTML = modalContent;
+}
+
+// Event listener pentru deschiderea modalului info
+document.getElementById("info-modal-btn").addEventListener("click", () => {
+    updateInfoModal();
+    document.getElementById("info-modal").style.display = "flex";
+});
+
+// Event listener pentru închiderea modalului info
+document.getElementById("close-info-modal-btn").addEventListener("click", () => {
+    document.getElementById("info-modal").style.display = "none";
+});
+
+// Event listener pentru închiderea modalului la click în afara lui
+window.addEventListener("click", (event) => {
+    let modal = document.getElementById("info-modal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Event listener pentru schimbarea limbii
+document.getElementById("lang-ro").addEventListener("click", () => {
+    currentLang = "ro";
+    updateInfoModal();
+});
+
+document.getElementById("lang-en").addEventListener("click", () => {
+    currentLang = "en";
+    updateInfoModal();
+});
