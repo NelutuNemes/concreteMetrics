@@ -229,6 +229,29 @@ footer p{
         text-align: center;
         position: relative;
     }
+    #info-modal-title{
+        text-decoration: underline;
+    }
+    #info-modal-description{
+        text-align: justify;
+    }
+    #spacer{
+        min-width: 3rem;
+        background-color: yellow;
+    }
+    #info-modal-table-title{
+        text-decoration: underline;
+    }
+    #obs-head-note{
+    text-align: justify;
+    margin-bottom:0;
+    text-decoration: underline;
+    }
+
+    #obs-note{
+    margin-top: 0;
+    text-align: justify;
+    }
 
         #info-modal-btn {
         /* margin: 10px; */
