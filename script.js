@@ -108,12 +108,12 @@ calculateBtn.addEventListener("click", calculateMaterials);
 
 //object with concrete mix recipes for different class
 const concreteRecipes = {
-    "C8/10 (B100)": { cement: 170, sand: 650, gravel: 1050, water: 150 },
-    "C12/15 (B150)": { cement: 210, sand: 600, gravel: 1100, water: 160 },
-    "C16/20 (B200)": { cement: 275, sand: 550, gravel: 1050, water: 160 },
-    "C20/25 (B250)": { cement: 325, sand: 500, gravel: 1025, water: 150 },
-    "C25/30 (B300)": { cement: 375, sand: 450, gravel: 1000, water: 140 },
-    "C30/37 (B350)": { cement: 425, sand: 400, gravel: 975, water: 130 }
+    "C8/10 (B100)": { cement: 190, sand: 900, gravel: 1050, water: 180 },
+    "C12/15 (B150)": { cement: 240, sand: 800, gravel: 1100, water: 180 },
+    "C16/20 (B200)": { cement: 290, sand: 800, gravel: 1150, water: 180 },
+    "C20/25 (B250)": { cement: 340, sand: 700, gravel: 1200, water: 175 },
+    "C25/30 (B300)": { cement: 390, sand: 700, gravel: 1250, water: 170 },
+    "C30/37 (B350)": { cement: 450, sand: 650, gravel: 1300, water: 160 }
 };
 
 //element to store result
