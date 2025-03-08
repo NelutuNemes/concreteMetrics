@@ -247,14 +247,14 @@ footer p{
         padding: 20px;
         height: 100vh;
         text-align: center;
-        font-size: 10px;
+        font-size: 0.5rem;
     }
 
         ul{
         list-style-type: none;
         border: 1px dotted black;
         border-radius: 5px;
-        min-width: 80vw;
+        min-width: fit-content;
         margin: auto;
         padding:0.5rem;
         display: flex;
