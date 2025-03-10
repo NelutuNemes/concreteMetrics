@@ -352,7 +352,7 @@ footer p{
 }
        .modal-content {
         background: white;
-        padding: 20px;
+        /* padding: 20px; */
         height: 100vh;
         text-align: center;
         font-size:0.8rem;
