@@ -8,7 +8,7 @@ body {
     background-color:black;
     /* background-image: url("resouces/images/concreteBackground.jpeg"); */
     margin: 0;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
 }
  .body-img-background{
     background-image: url("resouces/images/concreteBackground.jpeg");
