@@ -307,6 +307,9 @@ footer p{
     body *{
         background-color: white;
     }
+    .container{
+        background-color: white;
+    }
 
     footer *{
         display: none !important;
