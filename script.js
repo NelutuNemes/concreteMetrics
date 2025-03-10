@@ -42,7 +42,10 @@ i18next.init({
                 "bags":"bags of 40 ",
                 "generate-summary-btn": "Generate summary",
                 "session-title": "Session summary :",
-                "summary-result-title": "Result no  "
+                "summary-result-title": "Result no  ",
+                "print-summary-btn": "Print summary",
+                "invalid-alert-message-txt": "Error: The input provided is not valid. Please enter a correct volume value to proceed !"
+
             }
         },
         ro: {
@@ -53,9 +56,9 @@ i18next.init({
                 "concrete-class": "Clasa Beton",
                 "concreteClass-label": "Vă rugăm să alegeți clasa de beton",
                 "calculate-btn": "Calculează",
-                "result-title": "Materialele necesare pentru obtinerea unei cantitati de : ",
-                "result-title2": "de beton, conform clasei de beton alese : ",
-                "result-title3": ", sunt: ",
+                "result-title": "Materialele necesare pentru obtinerea unei cantitati de = ",
+                "result-title2": "de beton, conform clasei de beton aleasă - ",
+                "result-title3": ",  sunt  : ",
                 "cement": "Ciment",
                 "sand": "Nisip",
                 "gravel": "Pietriș",
@@ -64,7 +67,10 @@ i18next.init({
                 "bags":"saci de 40 ",
                 "generate-summary-btn": "Genereaza un sumar",
                 "session-title": "Rezumatul sesiunii :",
-                "summary-result-title": "Rezultatul nr "
+                "summary-result-title": "Rezultatul nr ",
+                "print-summary-btn": "Tipareste sumar",
+                "invalid-alert-message-txt": "Eroare: Datele introduse nu sunt valide. Vă rugăm să introduceți o valoare corectă pentru volum pentru a continua !"
+
             }
         }
     }
@@ -82,6 +88,7 @@ function updateUIWithTranslations() {
     let calculateBtn = document.getElementById("calculate-btn");
     let generateSummaryBtn = document.getElementById("generate-summary-btn");
     let sessionSummary = document.getElementById("session-summary");
+    let printSummaryBtn =document.getElementById("print-summary-btn")
 
     if (appTitle) appTitle.textContent = i18next.t("app-title");
     if (volumeInput) volumeInput.placeholder = i18next.t("volume");
@@ -90,7 +97,8 @@ function updateUIWithTranslations() {
     if (concreteClassLabel) concreteClassLabel.textContent = i18next.t("concreteClass-label");
     if (calculateBtn) calculateBtn.textContent = i18next.t("calculate-btn");
     if (generateSummaryBtn) generateSummaryBtn.textContent = i18next.t("generate-summary-btn");
-    if(sessionSummary) sessionSummary.textContent=i18next.t("session-title")
+    if (sessionSummary) sessionSummary.textContent = i18next.t("session-title");
+    if (printSummaryBtn) printSummaryBtn.textContent = i18next.t("print-summary-btn");
 }
 
 // Change language and store preference in localStorage
@@ -132,7 +140,7 @@ function calculateMaterials() {
     currentCalculation.concreteClass = concreteClassElement.value;
 
     if (!currentCalculation.volume || currentCalculation.volume <= 0) {
-        alert("Please enter a valid volume!");
+        alert(textContent = i18next.t("invalid-alert-message-txt"));
         return;
     }
 
@@ -249,8 +257,7 @@ document.getElementById("print-summary-btn").addEventListener("click", function(
 
 
 // info-modal
-
-// Obiect cu informațiile despre beton în ambele limbi
+// Object with concrete information in both languages ro/eng
 const betonData = {
     ro: {
         title: "Cantități de materiale pentru prepararea betonului",
@@ -296,10 +303,10 @@ const betonData = {
     }
 };
 
-// Variabilă pentru limba curentă (implicit română)
+// Variable for the current language (default is Romanian)
 let currentLang = "ro";
 
-// Funcție pentru actualizarea conținutului modalului info
+// Function to update the content of the info modal
 function updateInfoModal() {
     const data = betonData[currentLang];
 
@@ -321,18 +328,18 @@ function updateInfoModal() {
     document.getElementById("info-modal-content").innerHTML = modalContent;
 }
 
-// Event listener pentru deschiderea modalului info
+// Event listener for opening the info modal
 document.getElementById("info-modal-btn").addEventListener("click", () => {
     updateInfoModal();
     document.getElementById("info-modal").style.display = "flex";
 });
 
-// Event listener pentru închiderea modalului info
+// Event listener for closing the info modal
 document.getElementById("close-info-modal-btn").addEventListener("click", () => {
     document.getElementById("info-modal").style.display = "none";
 });
 
-// Event listener pentru închiderea modalului la click în afara lui
+// Event listener for closing the modal when clicking outside of it
 window.addEventListener("click", (event) => {
     let modal = document.getElementById("info-modal");
     if (event.target === modal) {
@@ -340,7 +347,7 @@ window.addEventListener("click", (event) => {
     }
 });
 
-// Event listener pentru schimbarea limbii
+// Event listener for changing the language
 document.getElementById("lang-ro").addEventListener("click", () => {
     currentLang = "ro";
     updateInfoModal();
