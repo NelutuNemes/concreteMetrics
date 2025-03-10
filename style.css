@@ -307,10 +307,13 @@ footer p{
     body *{
         background-color: white !important;
     }
+    #body{
+        background-color: white !important;
+    }
     .container{
         background-color: white !important;
     }
-    .user-container{
+    #user-container{
         background-color: white !important;
     }
 
