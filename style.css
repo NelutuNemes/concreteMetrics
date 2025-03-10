@@ -305,10 +305,13 @@ footer p{
     @media print {
 
     body *{
-        background-color: white;
+        background-color: white !important;
     }
     .container{
-        background-color: white;
+        background-color: white !important;
+    }
+    .user-container{
+        background-color: white !important;
     }
 
     footer *{
