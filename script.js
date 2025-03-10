@@ -140,7 +140,7 @@ function calculateMaterials() {
     currentCalculation.concreteClass = concreteClassElement.value;
 
     if (!currentCalculation.volume || currentCalculation.volume <= 0) {
-        alert(textContent = i18next.t("invalid-alert-message-txt"));
+        alert(i18next.t("invalid-alert-message-txt"));
         return;
     }
 
